@@ -22,17 +22,13 @@ const generateHTML = pokemons => {
 
 }
 
-const fetchPokemon = () => {
-  
-  const pokemonPromises = generatePokemonPromisses
-
-  Promise.all(pokemonPromises)
-    .then(generateHTML)
-  .then(pokemons => {
-    const ul = document.querySelector('[data-js="pokedex"]')
-    ul.innerHTML = pokemons
-  })
-
+const insertPokemonsIntoPage = pokemons => {
+  const ul = document.querySelector('[data-js="pokedex"]')
+  ul.innerHTML = pokemons
 }
 
-fetchPokemon()
+const pokemonPromises = generatePokemonPromisses
+
+Promise.all(pokemonPromises)
+  .then(generateHTML)
+  .then(insertPokemonsIntoPage)
